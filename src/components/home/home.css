@@ -1,0 +1,45 @@
+/* Glavni container */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffff; /* Tamno petrol plava boja */
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1%, transparent 1%);
+    background-size: 10px 10px; /* Mrežasta tekstura */
+    color: #013a63; /* Bijeli tekst */
+    text-align: center;
+  }
+  
+  /* Tekst dobrodošlice */
+  .welcome-text h1 {
+    margin: 0;
+    font-size: 3rem; /* Veliki font za naslov */
+    letter-spacing: 3px; /* Razmak između slova */
+  }
+  
+  /* Slika FESB */
+  .fesb-logo {
+    width: 150px; /* Širina slike */
+    height: auto;
+    border-radius: 10px; /* Zaobljeni uglovi (opcionalno) */
+  }
+  
+  /* Gumb za prijavu */
+  .login-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: #003f7f;
+  }
+  

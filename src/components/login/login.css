@@ -1,0 +1,62 @@
+/* Glavni container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #013a63; /* Tamno petrol plava boja */
+  color: #ffffff;
+}
+
+/* Login box */
+.login-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #013a63;
+  width: 300px;
+}
+
+/* Naslov */
+.login-box h1 {
+  margin-bottom: 20px;
+}
+
+/* Label */
+.label-text {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Polje za unos */
+.input-field,
+.role-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Gumb za prijavu */
+.login-button {
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #003f7f;
+}
