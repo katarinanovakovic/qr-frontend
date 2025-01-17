@@ -1,1 +1,73 @@
-
+/* Općeniti stilovi */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; /* Svijetlosiva pozadina */
+    color: #333; /* Tamnosiva za tekst */
+  }
+  
+  /* Kontejner stranice */
+  .student-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5; /* Bijela pozadina */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Blagi sjaj */
+    border-radius: 8px;
+  }
+  
+  /* Naslov */
+  .student-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #003366; /* Tamnoplava */
+    margin-bottom: 20px;
+  }
+  
+  /* QR sekcija */
+  .qr-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .qr-description {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555; /* Neutralna tamnosiva */
+  }
+  
+  #qr-code {
+    margin: 10px 0;
+    border: 5px solid #000000; /* Plavi rub QR koda */
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  /* Gumb za prisutnost */
+  .mark-attendance-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff; /* Bijeli tekst */
+    background-color: #007bff; /* Plava boja */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mark-attendance-button:hover {
+    background-color: #0056b3; /* Tamnija plava pri prelasku */
+  }
+  
+  .mark-attendance-button:disabled {
+    background-color: #cccccc; /* Siva boja za onemogućeni gumb */
+    cursor: not-allowed;
+  }
+  
+  .mark-attendance-button.marked {
+    background-color: #28a745; /* Zelena boja za potvrdu prisutnosti */
+  }
+  
