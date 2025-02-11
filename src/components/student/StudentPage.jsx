@@ -1,6 +1,6 @@
 const StudentPage = () =>{
     return (
-        <div>Student Page</div>
+        <div>Stranica za studente</div>
     )
 }
 

@@ -1,6 +1,6 @@
 const ProfessorPage = () =>{
     return (
-        <div>Professor Page</div>
+        <div>Stranica za profesore</div>
     )
 }
 
