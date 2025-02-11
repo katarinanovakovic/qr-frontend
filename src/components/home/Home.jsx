@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="welcome-text">
-        <h1>WELCOME</h1>
-        <h1>TO</h1>
+        <h1>DOBRODOŠLI</h1>
+        <h1>NA</h1>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8igO8FhRqBDUMX7EujzuolghNUqtB2NLImg&s"
           alt="FESB Logo"
@@ -17,7 +17,7 @@ const Home = () => {
         />
       </div>
       <button className="login-button" onClick={() => navigate("/login")}>
-        LOG IN
+        PRIJAVI SE
       </button>
     </div>
   );

@@ -41,31 +41,31 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1>Log in</h1>
+        <h1>Prijavi se</h1>
         <form onSubmit={handleSubmit}>
-          <label className="label-text" htmlFor="email">Email</label>
+          <label className="label-text" htmlFor="email">E-mail</label>
           <input
             id="email"
             className="input-field"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder="Unesite svoj e-mail"
             required
           />
           
-          <label className="label-text" htmlFor="password">Password</label>
+          <label className="label-text" htmlFor="password">Lozinka</label>
           <input
             id="password"
             className="input-field"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
+            placeholder="Unesite svoju lozinku"
             required
           />
           
-          <label className="label-text" htmlFor="role">Role</label>
+          <label className="label-text" htmlFor="role">Uloga</label>
           <select
             id="role"
             className="role-select"
@@ -73,10 +73,10 @@ const LoginPage = () => {
             onChange={(e) => setRole(e.target.value)}
           >
             <option value="student">Student</option>
-            <option value="professor">Professor</option>
+            <option value="professor">Profesor</option>
           </select>
 
-          <button className="login-button" type="submit">Log in</button>
+          <button className="login-button" type="submit">Prijavi se</button>
         </form>
       </div>
     </div>
