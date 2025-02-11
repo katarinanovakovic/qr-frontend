@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import LoginPage from "./components/login/LoginPage";
@@ -7,14 +7,54 @@ import ProfessorPage from "./components/professor/ProfessorPage";
 import Header from "./components/header/header";
 
 const App = () => {
+  useEffect(() => {
+    // Sakrij sadržaj ako korisnik pokuša screenshot
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.body.style.display = "none";
+        setTimeout(() => {
+          document.body.style.display = "block";
+        }, 3000);
+      }
+    };
+
+    // Onemogući Print Screen tipku
+    const handleKeyDown = (event) => {
+      if (event.key === "PrintScreen") {
+        document.body.style.display = "none";
+        setTimeout(() => {
+          document.body.style.display = "block";
+        }, 3000);
+        alert("Screenshot nije dozvoljen!");
+        event.preventDefault();
+      }
+    };
+
+    // Onemogući desni klik
+    const handleContextMenu = (event) => {
+      event.preventDefault();
+      alert("Desni klik nije dozvoljen!");
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/student" element={ <StudentPage />} />
-        <Route path="/professor" element={ <ProfessorPage />} />
+        <Route path="/student" element={<StudentPage />} />
+        <Route path="/professor" element={<ProfessorPage />} />
       </Routes>
     </Router>
   );
