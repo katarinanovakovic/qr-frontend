@@ -76,7 +76,7 @@ const LoginPage = () => {
             <option value="professor">Profesor</option>
           </select>
 
-          <button className="login-button" type="submit">Prijavi se</button>
+          <button className="login-button" type="submit">PRIJAVA</button>
         </form>
       </div>
     </div>

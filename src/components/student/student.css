@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5; 
+    background-color: #e6e6e6; 
     color: #333; 
   }
   
@@ -12,7 +12,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background-color: #f5f5f5; /* Svijetlo siva pozadina */
+    background-color: #e6e6e6;  /* Svijetlo siva pozadina */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Blagi sjaj */
     border-radius: 8px;
   }

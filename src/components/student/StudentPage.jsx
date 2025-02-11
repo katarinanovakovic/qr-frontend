@@ -40,10 +40,10 @@ const StudentPage = () => {
 
   return (
     <div id="student-page" className="student-container">
-      <h1 id="student-title" className="student-title">Welcome, Student</h1>
+      <h1 id="student-title" className="student-title">Dobrodošli</h1>
       <div id="qr-section" className="qr-container">
         <QRCodeCanvas id="qr-code" value={qrCodeData} size={200} />
-        <p id="qr-description" className="qr-description">Your QR Code</p>
+        <p id="qr-description" className="qr-description">Vaš QR kod</p>
       </div>
       <button
         id="mark-attendance-btn"

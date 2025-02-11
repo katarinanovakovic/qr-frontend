@@ -1,129 +1,212 @@
+/* Općeniti stilovi */
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5; 
-    color: #333; 
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #e6e6e6; 
+  color: #333; 
+}
+
+/* Glavni kontejner */
+.professor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #e6e6e6;
+}
+
+/* Naslov */
+.professor-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* Sekcija za odabir kolegija */
+.course-selection {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.575);
+  position: relative;
+}
+
+/* Stilizirani padajući izbornik */
+.course-dropdown {
+  margin: 25px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #003366;
+  border-radius: 8px;
+  width: 100%;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Kad korisnik otvori izbornik */
+.course-dropdown:focus {
+  border-color: #0056b3;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Stilizirane opcije u izborniku */
+.course-dropdown option {
+  font-size: 1rem;
+  padding: 10px;
+  border: 2px;
+  background-color: #979797;
+  color: #ffffff;
+}
+
+/* Hover efekat za opcije */
+.course-dropdown option:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Odabrana opcija */
+.course-dropdown option:checked {
+  font-weight: bold;
+  background-color: #0056b3;
+  color: white;
+}
+
+
+/* Animacija otvaranja izbornika */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
   }
-  
-  .professor-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centriranje sadržaja */
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #f5f5f5;  /* Svijetlo siva pozadina */
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  .professor-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #003366; /* Tamnoplava boja naslova*/
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Sekcija za odabir kolegija */
-  .course-selection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .course-selection select {
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #ffffff;
-  }
-  
-  .course-selection button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .course-selection button:hover {
-    background-color: #0056b3;
-  }
-  
-  .course-selection button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  /* QR sekcija */
-  .qr-container {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .qr-container p {
-    margin-top: 10px;
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Sekcija za prisutnost */
-  .attendance-section {
-    width: 100%;
-    max-width: 500px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .attendance-section button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .attendance-section button:hover {
-    background-color: #0056b3;
-  }
-  
-  .attendance-section button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .attendance-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-  }
-  
-  .attendance-list li {
-    font-size: 1rem;
-    color: #333;
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .attendance-list li:last-child {
-    border-bottom: none;
-  }
-  
+}
+
+.course-dropdown option {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Gumb za generiranje QR koda */
+.generate-qr-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.generate-qr-button:hover {
+  background-color: #0056b3;
+}
+
+.generate-qr-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Sekcija za QR kod */
+.qr-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.qr-description {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Sekcija za prisutnost */
+.attendance-section {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Gumb za dohvaćanje prisutnosti */
+.fetch-attendance-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fetch-attendance-button:hover {
+  background-color: #0056b3;
+}
+
+.fetch-attendance-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Popis prisutnih studenata */
+.attendance-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.attendance-item {
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.attendance-item:last-child {
+  border-bottom: none;
+}
+
+/* Poboljšanje pregleda liste prisutnih */
+.attendance-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.attendance-list::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+
+.attendance-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

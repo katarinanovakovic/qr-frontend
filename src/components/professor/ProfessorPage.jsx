@@ -19,7 +19,7 @@ const ProfessorPage = () => {
     "Fizika 2",
     "Elektrotehnika",
     "Elektronika"
-  ]; // Popis kolegija
+  ]; 
 
   const handleGenerateQrCode = () => {
     const timestamp = Date.now();
@@ -48,16 +48,19 @@ const ProfessorPage = () => {
   };
 
   return (
-    <div id="professor-page" className="professor-container">
-      <h1 id="professor-title" className="professor-title">Professor Dashboard</h1>
-      <div id="course-selection-section" className="course-selection">
-        <label htmlFor="course">Select a Course:</label>
+    <div className="professor-container">
+      <h1 className="professor-title">Započnite evidenciju na predavanju</h1>
+
+      {/* Izbornik za odabir kolegija */}
+      <div className="course-selection">
+        <label htmlFor="course" className="course-label">Izaberite kolegij:</label>
         <select
           id="course"
+          className="course-dropdown"
           value={selectedCourse}
           onChange={(e) => setSelectedCourse(e.target.value)}
         >
-          <option value="">--Select a Course--</option>
+          <option value="">-- Odaberite kolegij --</option>
           {courses.map((course, index) => (
             <option key={index} value={course}>
               {course}
@@ -65,33 +68,33 @@ const ProfessorPage = () => {
           ))}
         </select>
         <button
-          id="generate-qr-btn"
           className="generate-qr-button"
           onClick={handleGenerateQrCode}
           disabled={!selectedCourse}
         >
-          Generate QR Code
+          Generirajte QR kod
         </button>
       </div>
+
+      {/* QR kod sekcija */}
       {qrCodeData && (
-        <div id="qr-section" className="qr-container">
-          <QRCodeCanvas id="qr-code" value={qrCodeData} size={200} />
-          <p id="qr-description" className="qr-description">
-            Scan this QR Code to start the lecture
-          </p>
+        <div className="qr-container">
+          <QRCodeCanvas value={qrCodeData} size={200} className="qr-code" />
+          <p className="qr-description">Skenirajte QR kod za početak predavanja.</p>
         </div>
       )}
-      <div id="attendance-section" className="attendance-section">
+
+      {/* Prisutnost studenata */}
+      <div className="attendance-section">
         <button
-          id="fetch-attendance-btn"
           className="fetch-attendance-button"
           onClick={fetchAttendance}
           disabled={!selectedCourse}
         >
-          Fetch Attendance
+          Dohvati prisutnost
         </button>
         {attendanceList.length > 0 && (
-          <ul id="attendance-list" className="attendance-list">
+          <ul className="attendance-list">
             {attendanceList.map((student, index) => (
               <li key={index} className="attendance-item">{student}</li>
             ))}

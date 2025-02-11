@@ -4,10 +4,12 @@ import Home from "./components/home/Home";
 import LoginPage from "./components/login/LoginPage";
 import StudentPage from "./components/student/StudentPage";
 import ProfessorPage from "./components/professor/ProfessorPage";
+import Header from "./components/header/header";
 
 const App = () => {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
