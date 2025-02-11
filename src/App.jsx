@@ -30,20 +30,15 @@ const App = () => {
       }
     };
 
-    // Onemogući desni klik
-    const handleContextMenu = (event) => {
-      event.preventDefault();
-      alert("Desni klik nije dozvoljen!");
-    };
-
+  
     document.addEventListener("visibilitychange", handleVisibilityChange);
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("contextmenu", handleContextMenu);
+    
 
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("contextmenu", handleContextMenu);
+      
     };
   }, []);
 
