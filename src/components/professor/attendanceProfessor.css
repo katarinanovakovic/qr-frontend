@@ -1,0 +1,66 @@
+.attendance-professor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .attendance-title {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 20px;
+  }
+  
+  .course-selection {
+    margin-bottom: 20px;
+  }
+  
+  .course-label {
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  .course-dropdown {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .fetch-attendance-button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .fetch-attendance-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .attendance-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .attendance-item {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .no-attendance {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  

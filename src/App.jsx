@@ -5,6 +5,8 @@ import LoginPage from "./components/login/LoginPage";
 import StudentPage from "./components/student/StudentPage";
 import ProfessorPage from "./components/professor/ProfessorPage";
 import Header from "./components/header/header";
+import AttendanceProfessor from "./components/professor/AttendanceProfessor";
+import AttendanceStudent from "./components/student/AttendanceStudent";
 
 const App = () => {
   useEffect(() => {
@@ -50,6 +52,8 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/student" element={<StudentPage />} />
         <Route path="/professor" element={<ProfessorPage />} />
+        <Route path="/attendance-student" element={<AttendanceStudent />} />
+        <Route path="/attendance-professor" element={<AttendanceProfessor />} />
       </Routes>
     </Router>
   );
