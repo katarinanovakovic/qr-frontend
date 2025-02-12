@@ -5,30 +5,28 @@ import "./login.css";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("student"); // Dodano za izbor između studenta i profesora
+  const [role, setRole] = useState("student");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Pošaljite prijavu na backend
     const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password, role }), // Dodano role u body
+      body: JSON.stringify({ email, password, role }),
     });
 
     const data = await response.json();
 
     if (response.ok) {
-      // Spremi token u localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
-      // Preusmjeri korisnika na odgovarajuću stranicu
       if (data.role === "student") {
+        localStorage.setItem("loginTimestamp", Date.now()); // Spremi novi timestamp za QR kod
         navigate("/student");
       } else if (data.role === "professor") {
         navigate("/professor");
