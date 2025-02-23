@@ -1,0 +1,30 @@
+.referada-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 600px) {
+    .btn {
+      width: 80%;
+    }
+  }
+  

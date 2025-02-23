@@ -7,6 +7,7 @@ import ProfessorPage from "./components/professor/ProfessorPage";
 import Header from "./components/header/header";
 import AttendanceProfessor from "./components/professor/AttendanceProfessor";
 import AttendanceStudent from "./components/student/AttendanceStudent";
+import Referada from "./components/referada/Referada";
 
 const App = () => {
   useEffect(() => {
@@ -46,7 +47,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
@@ -54,6 +55,7 @@ const App = () => {
         <Route path="/professor" element={<ProfessorPage />} />
         <Route path="/attendance-student" element={<AttendanceStudent />} />
         <Route path="/attendance-professor" element={<AttendanceProfessor />} />
+        <Route path="/referada" element={<Referada />} />
       </Routes>
     </Router>
   );
