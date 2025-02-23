@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import "./professor.css";
 
+
 const ProfessorPage = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [qrCodeData, setQrCodeData] = useState("");
@@ -49,6 +50,7 @@ const ProfessorPage = () => {
 
   return (
     <div className="professor-container">
+  
       <h1 className="professor-title">Započnite evidenciju na predavanju</h1>
 
       {/* Izbornik za odabir kolegija */}
