@@ -8,34 +8,28 @@ const ProfessorPage = () => {
   const [attendanceList, setAttendanceList] = useState([]);
   const [courses, setCourses] = useState([]);
 
-  // Dohvat svih predmeta s backend servera
+  // Dohvati predmete kada se stranica učita
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('http://localhost:5000/subjects');
+        const response = await fetch("http://localhost:5000/subjects");
         const data = await response.json();
-        
-        console.log("Fetched courses:", data); // Provjera što vraća server
-
-        // Provjeravamo je li odgovor polje predmeta
-        if (Array.isArray(data)) {
-          setCourses(data); // Sprema predmete u state
-        } else {
-          console.error("Expected an array but received:", data);
-        }
+        setCourses(data);  // Spremi sve predmete
       } catch (error) {
-        console.error("Error fetching subjects:", error);
+        console.error("Error fetching courses:", error);
       }
     };
 
     fetchCourses();
   }, []);
 
-  // Generiraj QR kod na temelju predmeta
+  // Generiranje QR koda
   const handleGenerateQrCode = () => {
     const timestamp = Date.now();
-    const qrCodeValue = `${selectedCourse.name}-${timestamp}`; // Kreiraj QR kod sa nazivom kolegija i timestampom
-    setQrCodeData(qrCodeValue); // Postavi generirani QR kod
+    const courseData = courses.find(course => course.name === selectedCourse);
+    if (courseData) {
+      setQrCodeData(`${courseData._id}-${timestamp}`); // QR kod s ID-em predmeta i timestampom
+    }
   };
 
   const fetchAttendance = async () => {
@@ -45,7 +39,7 @@ const ProfessorPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ course: selectedCourse.name }), // Poslati naziv kolegija na backend
+        body: JSON.stringify({ course: selectedCourse }),
       });
 
       if (response.ok) {
@@ -69,19 +63,15 @@ const ProfessorPage = () => {
         <select
           id="course"
           className="course-dropdown"
-          value={selectedCourse._id || ""}
-          onChange={(e) => setSelectedCourse(courses.find(course => course._id === e.target.value))}
+          value={selectedCourse}
+          onChange={(e) => setSelectedCourse(e.target.value)}
         >
           <option value="">-- Odaberite kolegij --</option>
-          {courses.length > 0 ? (
-            courses.map((course) => (
-              <option key={course._id} value={course._id}>
-                {course.name}
-              </option>
-            ))
-          ) : (
-            <option value="" disabled>Nema kolegija</option>
-          )}
+          {courses.map((course, index) => (
+            <option key={index} value={course.name}>
+              {course.name}
+            </option>
+          ))}
         </select>
         <button
           className="generate-qr-button"
