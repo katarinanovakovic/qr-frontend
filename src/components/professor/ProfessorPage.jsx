@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import "./professor.css";
-
 
 const ProfessorPage = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [qrCodeData, setQrCodeData] = useState("");
   const [attendanceList, setAttendanceList] = useState([]);
+  const [courses, setCourses] = useState([]);
 
-  const courses = [
-    "Ugradbeni računalni sustavi", 
-    "Operacijski sustavi", 
-    "Paralelno programiranje", 
-    "Grid računalni sustavi",
-    "Poslovni informacijski sustavi",
-    "Matematika 1",
-    "Matematika 2",
-    "Fizika 1", 
-    "Fizika 2",
-    "Elektrotehnika",
-    "Elektronika"
-  ]; 
+  // Funkcija za dohvat kolegija sa servera
+  const fetchCourses = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/subjects");
+      if (response.ok) {
+        const data = await response.json();
+        // Pretpostavljamo da vaša baza vraća niz objekata
+        setCourses(data.map(subject => subject.name)); // Ako je u objektu svojstvo 'name'
+      } else {
+        alert("Failed to fetch courses.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCourses(); // Poziva se čim se komponenta mount-a
+  }, []);
 
   const handleGenerateQrCode = () => {
     const timestamp = Date.now();
@@ -50,7 +56,6 @@ const ProfessorPage = () => {
 
   return (
     <div className="professor-container">
-  
       <h1 className="professor-title">Započnite evidenciju na predavanju</h1>
 
       {/* Izbornik za odabir kolegija */}
