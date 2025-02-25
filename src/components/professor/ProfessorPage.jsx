@@ -3,32 +3,34 @@ import { QRCodeCanvas } from "qrcode.react";
 import "./professor.css";
 
 const ProfessorPage = () => {
-  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState("");
   const [qrCodeData, setQrCodeData] = useState("");
   const [attendanceList, setAttendanceList] = useState([]);
-  const [courses, setCourses] = useState([]);
+  const [subjects, setSubjects] = useState([]);  // Promijenjeno 'courses' u 'subjects'
 
   // Dohvati predmete kada se stranica učita
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchSubjects = async () => {
       try {
         const response = await fetch("http://localhost:5000/subjects");
         const data = await response.json();
-        setCourses(data);  // Spremi sve predmete
+        console.log(data);  // Ispisivanje podataka u konzolu
+        setSubjects(data);  // Spremi predmete u 'subjects'
       } catch (error) {
-        console.error("Error fetching courses:", error);
+        console.error("Error fetching subjects:", error);
       }
     };
-
-    fetchCourses();
+  
+    fetchSubjects();
   }, []);
+  
 
   // Generiranje QR koda
   const handleGenerateQrCode = () => {
     const timestamp = Date.now();
-    const courseData = courses.find(course => course.name === selectedCourse);
-    if (courseData) {
-      setQrCodeData(`${courseData._id}-${timestamp}`); // QR kod s ID-em predmeta i timestampom
+    const subjectData = subjects.find(subject => subject.name === selectedSubject);
+    if (subjectData) {
+      setQrCodeData(`${subjectData._id}-${timestamp}`); // QR kod s ID-em predmeta i timestampom
     }
   };
 
@@ -39,7 +41,7 @@ const ProfessorPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ course: selectedCourse }),
+        body: JSON.stringify({ subject: selectedSubject }),  // Koristi 'subject' umjesto 'course'
       });
 
       if (response.ok) {
@@ -58,25 +60,25 @@ const ProfessorPage = () => {
       <h1 className="professor-title">Započnite evidenciju na predavanju</h1>
 
       {/* Izbornik za odabir kolegija */}
-      <div className="course-selection">
-        <label htmlFor="course" className="course-label">Izaberite kolegij:</label>
+      <div className="subject-selection">
+        <label htmlFor="subject" className="subject-label">Izaberite kolegij:</label>
         <select
-          id="course"
-          className="course-dropdown"
-          value={selectedCourse}
-          onChange={(e) => setSelectedCourse(e.target.value)}
+          id="subject"
+          className="subject-dropdown"
+          value={selectedSubject}
+          onChange={(e) => setSelectedSubject(e.target.value)}
         >
           <option value="">-- Odaberite kolegij --</option>
-          {courses.map((course, index) => (
-            <option key={index} value={course.name}>
-              {course.name}
+          {subjects.map((subject, index) => (
+            <option key={index} value={subject.name}>
+              {subject.name}
             </option>
           ))}
         </select>
         <button
           className="generate-qr-button"
           onClick={handleGenerateQrCode}
-          disabled={!selectedCourse}
+          disabled={!selectedSubject}
         >
           Generirajte QR kod
         </button>
@@ -95,7 +97,7 @@ const ProfessorPage = () => {
         <button
           className="fetch-attendance-button"
           onClick={fetchAttendance}
-          disabled={!selectedCourse}
+          disabled={!selectedSubject}
         >
           Dohvati prisutnost
         </button>
