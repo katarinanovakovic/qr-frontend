@@ -12,6 +12,7 @@ const Header = () => {
   const isProfessorPage = location.pathname === "/professor";
   const isStudentAttendance = location.pathname === "/attendance-student";
   const isProfessorAttendance = location.pathname === "/attendance-professor";
+  const isReferadaPage = location.pathname === "/referada";
 
   return (
     <header className="header">
@@ -43,7 +44,7 @@ const Header = () => {
         )}
 
         {/* Dugme ODJAVA (uvijek prisutno na student, professor i attendance stranicama) */}
-        {(isStudentPage || isProfessorPage || isStudentAttendance || isProfessorAttendance) && (
+        {(isStudentPage || isProfessorPage || isStudentAttendance || isProfessorAttendance || isReferadaPage) && (
           <button className="logout-button" onClick={() => navigate("/")}>
             ODJAVA
           </button>

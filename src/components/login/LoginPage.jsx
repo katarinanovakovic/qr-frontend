@@ -31,6 +31,9 @@ const LoginPage = () => {
       } else if (data.role === "professor") {
         navigate("/professor");
       }
+      else if(data.role === "referada"){
+        navigate("/referada");
+      }
     } else {
       alert(data.message || "Login failed");
     }
@@ -72,6 +75,8 @@ const LoginPage = () => {
           >
             <option value="student">Student</option>
             <option value="professor">Profesor</option>
+            <option value="referada">Referada</option>
+
           </select>
 
           <button className="login-button" type="submit">PRIJAVA</button>

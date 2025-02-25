@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './modal.css';
+import AddEntityModal from './AddEntityModal';
 
 const Modal = ({ title, onClose, type }) => {
   const [data, setData] = useState([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [showListModal, setShowListModal] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +32,12 @@ const Modal = ({ title, onClose, type }) => {
     fetchData();
   }, [type]);
 
+  const handleCloseModal = () => {
+    setIsAddModalOpen(false);  // Zatvori modal za dodavanje
+    setShowListModal(false);   // Zatvori popis modal
+    onClose();                 // Zatvori roditeljski modal
+  };
+
   
 
   return (
@@ -41,6 +50,19 @@ const Modal = ({ title, onClose, type }) => {
             <li key={item._id}>{item.name}</li>  // Pretpostavljamo da svaki objekt ima 'name' i '_id'
           ))}
         </ul>
+        <button 
+          className="add-btn" 
+          onClick={() => setIsAddModalOpen(true)}
+        >
+          Dodaj {type === "professors" ? "Profesora" : type === "students" ? "Studenta" : "Predmet"}
+        </button>
+
+        {isAddModalOpen && (
+          <AddEntityModal 
+            type={type}
+            onClose={handleCloseModal}
+          />
+        )}
       </div>
     </div>
   );

@@ -45,4 +45,32 @@
     padding: 5px;
     border-bottom: 1px solid #ddd;
   }
+
+  .add-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .submit-btn:hover, .add-btn:hover {
+    background-color: #0056b3;
+  }
+  
   
