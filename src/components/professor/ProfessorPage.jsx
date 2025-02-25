@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import "./professor.css";
-
 
 const ProfessorPage = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [qrCodeData, setQrCodeData] = useState("");
   const [attendanceList, setAttendanceList] = useState([]);
+  const [courses, setCourses] = useState([]);
 
-  const courses = [
-    "Ugradbeni računalni sustavi", 
-    "Operacijski sustavi", 
-    "Paralelno programiranje", 
-    "Grid računalni sustavi",
-    "Poslovni informacijski sustavi",
-    "Matematika 1",
-    "Matematika 2",
-    "Fizika 1", 
-    "Fizika 2",
-    "Elektrotehnika",
-    "Elektronika"
-  ]; 
+  // Dohvat svih predmeta s backend servera
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/subjects');
+        const data = await response.json();
+        
+        console.log("Fetched courses:", data); // Provjera što vraća server
 
+        // Provjeravamo je li odgovor polje predmeta
+        if (Array.isArray(data)) {
+          setCourses(data); // Sprema predmete u state
+        } else {
+          console.error("Expected an array but received:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  // Generiraj QR kod na temelju predmeta
   const handleGenerateQrCode = () => {
     const timestamp = Date.now();
-    setQrCodeData(`${selectedCourse}-${timestamp}`);
+    const qrCodeValue = `${selectedCourse.name}-${timestamp}`; // Kreiraj QR kod sa nazivom kolegija i timestampom
+    setQrCodeData(qrCodeValue); // Postavi generirani QR kod
   };
 
   const fetchAttendance = async () => {
@@ -34,7 +45,7 @@ const ProfessorPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ course: selectedCourse }),
+        body: JSON.stringify({ course: selectedCourse.name }), // Poslati naziv kolegija na backend
       });
 
       if (response.ok) {
@@ -50,7 +61,6 @@ const ProfessorPage = () => {
 
   return (
     <div className="professor-container">
-  
       <h1 className="professor-title">Započnite evidenciju na predavanju</h1>
 
       {/* Izbornik za odabir kolegija */}
@@ -59,15 +69,19 @@ const ProfessorPage = () => {
         <select
           id="course"
           className="course-dropdown"
-          value={selectedCourse}
-          onChange={(e) => setSelectedCourse(e.target.value)}
+          value={selectedCourse._id || ""}
+          onChange={(e) => setSelectedCourse(courses.find(course => course._id === e.target.value))}
         >
           <option value="">-- Odaberite kolegij --</option>
-          {courses.map((course, index) => (
-            <option key={index} value={course}>
-              {course}
-            </option>
-          ))}
+          {courses.length > 0 ? (
+            courses.map((course) => (
+              <option key={course._id} value={course._id}>
+                {course.name}
+              </option>
+            ))
+          ) : (
+            <option value="" disabled>Nema kolegija</option>
+          )}
         </select>
         <button
           className="generate-qr-button"
